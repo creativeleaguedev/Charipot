@@ -1,0 +1,91 @@
+{
+  "name": "AdminAccessCode",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "description": "Admin email the code was issued to (lowercase)"
+    },
+    "codeHash": {
+      "type": "string",
+      "description": "SHA-256 hash of the issued code salted with the admin user id"
+    },
+    "expiresAt": {
+      "type": "string",
+      "description": "ISO datetime the code expires"
+    },
+    "consumed": {
+      "type": "boolean",
+      "default": false,
+      "description": "True once verified or invalidated by max attempts"
+    },
+    "attempts": {
+      "type": "number",
+      "default": 0,
+      "description": "Failed verification attempts for this code"
+    }
+  },
+  "required": [
+    "email",
+    "codeHash",
+    "expiresAt"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "platform_admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "platform_admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "platform_admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "platform_admin"
+          }
+        }
+      ]
+    }
+  }
+}

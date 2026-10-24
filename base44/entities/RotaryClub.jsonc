@@ -1,0 +1,45 @@
+{
+  "name": "RotaryClub",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "contactEmail": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "VERIFIED",
+        "ACTIVE",
+        "SUSPENDED"
+      ],
+      "default": "PENDING"
+    },
+    "registeredAt": {
+      "type": "string"
+    },
+    "projectsCount": {
+      "type": "number",
+      "default": 0
+    },
+    "fundingReceived": {
+      "type": "number",
+      "default": 0
+    },
+    "beneficiariesReached": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "name",
+    "region",
+    "status"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Mirror FundingRound records (Admin Command Center) to Supabase (rotary_funding_rounds) on create/update",
+  "name": "Supabase Sync Funding Rounds",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "entity",
+      "events": [
+        "create",
+        "update"
+      ],
+      "entity_name": "FundingRound"
+    }
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "supabase_sync_funding_rounds",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "sync": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "supabaseSync",
+            "args": {
+              "entity": "FundingRound",
+              "recordId": "${ .trigger.entity_id }"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Mirror funding round to Supabase",
+            "description": "rotary_funding_rounds"
+          }
+        }
+      }
+    ]
+  }
+}

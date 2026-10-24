@@ -1,0 +1,105 @@
+{
+  "name": "PassPurchase",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string"
+    },
+    "fullName": {
+      "type": "string"
+    },
+    "userEmail": {
+      "type": "string"
+    },
+    "packageId": {
+      "type": "string"
+    },
+    "packageLabel": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "number",
+      "description": "Total passes bought in this purchase"
+    },
+    "passPrice": {
+      "type": "number"
+    },
+    "amountPaid": {
+      "type": "number"
+    },
+    "discount": {
+      "type": "number"
+    },
+    "validityDays": {
+      "type": "number",
+      "default": 0,
+      "description": "0 = no expiry"
+    },
+    "purchasedAt": {
+      "type": "string"
+    },
+    "expiresAt": {
+      "type": "string",
+      "description": "ISO datetime passes expire (null if no expiry)"
+    },
+    "remaining": {
+      "type": "number",
+      "default": 0,
+      "description": "Unused passes left in this purchase"
+    },
+    "burnedQty": {
+      "type": "number",
+      "default": 0,
+      "description": "Passes burned at expiry"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "burned"
+      ],
+      "default": "active"
+    },
+    "reminderSent": {
+      "type": "boolean",
+      "default": false,
+      "description": "Day-before-expiry email sent"
+    },
+    "paidChain": {
+      "type": "string"
+    },
+    "paidToken": {
+      "type": "string"
+    },
+    "paidTxHash": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "userId",
+    "packageLabel",
+    "quantity",
+    "remaining",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "data.userId": "{{user.id}}"
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

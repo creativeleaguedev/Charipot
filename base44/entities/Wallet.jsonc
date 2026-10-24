@@ -1,0 +1,136 @@
+{
+  "name": "Wallet",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Owning user id"
+    },
+    "fullName": {
+      "type": "string"
+    },
+    "govBalance": {
+      "type": "number",
+      "default": 0,
+      "description": "Spendable GOV tokens (net of escrow \u2014 GOV locked in open sell orders is debited here and tracked in govEscrowed)"
+    },
+    "govEscrowed": {
+      "type": "number",
+      "default": 0,
+      "description": "GOV locked in open sell orders. Debited from govBalance at order creation; released to the buyer on fill or back to govBalance on cancel."
+    },
+    "govBurned": {
+      "type": "number",
+      "default": 0,
+      "description": "Lifetime GOV burned via voting"
+    },
+    "govCommitted": {
+      "type": "number",
+      "default": 0
+    },
+    "prizeBalance": {
+      "type": "number",
+      "default": 0,
+      "description": "Claimable prize winnings"
+    },
+    "totalReferralEarnings": {
+      "type": "number",
+      "default": 0,
+      "description": "Lifetime referral earnings accrued (ticket referrals + 2% pass-purchase bonus). Paid out on-chain via the admin Agent Payout panel."
+    },
+    "referralPaidOut": {
+      "type": "number",
+      "default": 0,
+      "description": "Cumulative referral earnings already paid out on-chain. Payable balance = totalReferralEarnings - referralPaidOut."
+    },
+    "totalBonusEarnings": {
+      "type": "number",
+      "default": 0,
+      "description": "Winning Agent Bonus lifetime"
+    },
+    "passBalance": {
+      "type": "number",
+      "default": 0,
+      "description": "Redeemable ticket passes. 1 pass = 1 free ticket play (pass = half the ticket price)."
+    },
+    "passPurchased": {
+      "type": "number",
+      "default": 0,
+      "description": "Lifetime passes purchased"
+    },
+    "passSpent": {
+      "type": "number",
+      "default": 0,
+      "description": "Lifetime passes redeemed for ticket plays"
+    },
+    "isAgent": {
+      "type": "boolean",
+      "default": false
+    },
+    "agentCode": {
+      "type": "string",
+      "description": "Unique referral code"
+    },
+    "referrerCode": {
+      "type": "string",
+      "description": "Permanent invitation code of the agent who referred this user. Locked once set; cannot be changed."
+    },
+    "agentTier": {
+      "type": "string",
+      "enum": [
+        "standard",
+        "senior",
+        "champion"
+      ],
+      "default": "standard"
+    },
+    "ticketsSold": {
+      "type": "number",
+      "default": 0
+    },
+    "clubName": {
+      "type": "string",
+      "description": "Rotary club this wallet owner represents (if club officer)"
+    },
+    "walletAddress": {
+      "type": "string",
+      "description": "Platform-managed EVM wallet address (same on BNB/ETH/Polygon)"
+    },
+    "encryptedPrivateKey": {
+      "type": "string",
+      "description": "AES-256-GCM encrypted private key; never exposed to the client"
+    },
+    "cryptoBalances": {
+      "type": "string",
+      "description": "Cached JSON snapshot of on-chain USDC/USDT balances per chain"
+    },
+    "cryptoEscrowed": {
+      "type": "string",
+      "description": "JSON of USDC/USDT reserved per chain for open buy orders: {bnb:{USDC,USDT},ethereum:{...},polygon:{...}}. Enforced as a soft lock across all spend paths."
+    },
+    "customTokens": {
+      "type": "string",
+      "description": "JSON array of user-tracked custom ERC20 tokens: [{chain, address, symbol, name, decimals}]"
+    },
+    "lastSyncAt": {
+      "type": "string",
+      "description": "ISO datetime of the last on-chain balance sync"
+    },
+    "isBlacklisted": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if the wallet is blacklisted and blocked from receiving prize payouts"
+    },
+    "blacklistReason": {
+      "type": "string",
+      "description": "Reason the wallet was blacklisted"
+    },
+    "blacklistedAt": {
+      "type": "string",
+      "description": "ISO datetime the wallet was blacklisted"
+    }
+  },
+  "required": [
+    "userId"
+  ]
+}

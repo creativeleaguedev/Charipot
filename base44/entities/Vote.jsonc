@@ -1,0 +1,38 @@
+{
+  "name": "Vote",
+  "type": "object",
+  "properties": {
+    "projectId": {
+      "type": "string"
+    },
+    "projectName": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string"
+    },
+    "userName": {
+      "type": "string"
+    },
+    "govAmount": {
+      "type": "number",
+      "description": "GOV committed (and burned)"
+    },
+    "governanceRound": {
+      "type": "number",
+      "default": 1
+    },
+    "fundingRoundId": {
+      "type": "string",
+      "description": "Funding round this vote counts toward (optional; empty for legacy governance rounds)"
+    },
+    "burnedAt": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "projectId",
+    "projectName",
+    "govAmount"
+  ]
+}

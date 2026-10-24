@@ -1,0 +1,53 @@
+{
+  "name": "AgentBonusRecord",
+  "type": "object",
+  "properties": {
+    "agentId": {
+      "type": "string"
+    },
+    "agentCode": {
+      "type": "string"
+    },
+    "agentName": {
+      "type": "string"
+    },
+    "ticketId": {
+      "type": "string"
+    },
+    "ticketNumber": {
+      "type": "number"
+    },
+    "drawNumber": {
+      "type": "number"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "REFERRAL",
+        "WINNING_BONUS"
+      ],
+      "description": "Per-ticket referral or 5/5 jackpot bonus"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACCRUED",
+        "SETTLED",
+        "PAID"
+      ],
+      "default": "ACCRUED"
+    },
+    "createdAt": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "agentCode",
+    "type",
+    "amount",
+    "status"
+  ]
+}

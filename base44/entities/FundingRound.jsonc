@@ -1,0 +1,111 @@
+{
+  "name": "FundingRound",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Display name, e.g. October 2026 Community Fund"
+    },
+    "description": {
+      "type": "string",
+      "description": "Explanation of the round shown to users"
+    },
+    "fundingAmount": {
+      "type": "number",
+      "default": 0,
+      "description": "Maximum amount available for allocation from the Charity Wallet"
+    },
+    "remainingAmount": {
+      "type": "number",
+      "default": 0,
+      "description": "Funding left after allocation calculation (fundingAmount minus sum of allocations)"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD"
+    },
+    "startDate": {
+      "type": "string",
+      "description": "ISO datetime voting opens (set when round is activated)"
+    },
+    "endDate": {
+      "type": "string",
+      "description": "ISO datetime voting closes"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "ACTIVE",
+        "VOTING_CLOSED",
+        "ALLOCATION_CALCULATED",
+        "ALLOCATION_APPROVED",
+        "FUNDING_IN_PROGRESS",
+        "COMPLETED",
+        "SUSPENDED",
+        "CANCELLED"
+      ],
+      "default": "DRAFT",
+      "description": "Round lifecycle state"
+    },
+    "createdById": {
+      "type": "string"
+    },
+    "createdByName": {
+      "type": "string"
+    },
+    "editHistory": {
+      "type": "string",
+      "description": "JSON array of {field, from, to, admin, reason, timestamp}"
+    },
+    "totalVotes": {
+      "type": "number",
+      "default": 0,
+      "description": "Running GOV committed across all projects in this round"
+    },
+    "voterCount": {
+      "type": "number",
+      "default": 0
+    },
+    "charityWalletKey": {
+      "type": "string",
+      "default": "charity",
+      "description": "PlatformWallet key the round draws from"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "closedAt": {
+      "type": "string",
+      "description": "ISO datetime voting closed"
+    },
+    "allocationFinalizedAt": {
+      "type": "string",
+      "description": "ISO datetime allocation was approved and locked"
+    }
+  },
+  "required": [
+    "name",
+    "fundingAmount",
+    "endDate",
+    "status"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

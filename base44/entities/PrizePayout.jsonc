@@ -1,0 +1,140 @@
+{
+  "name": "PrizePayout",
+  "type": "object",
+  "properties": {
+    "drawNumber": {
+      "type": "number",
+      "description": "Draw this payout originates from"
+    },
+    "ticketId": {
+      "type": "string",
+      "description": "Winning ticket id"
+    },
+    "ticketNumber": {
+      "type": "number",
+      "default": 0
+    },
+    "userId": {
+      "type": "string",
+      "description": "Winning user id"
+    },
+    "fullName": {
+      "type": "string"
+    },
+    "walletId": {
+      "type": "string"
+    },
+    "walletAddress": {
+      "type": "string"
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "5/5",
+        "4/5",
+        "3/5"
+      ],
+      "description": "Prize tier won"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Net prize amount pending release"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PENDING_VERIFICATION",
+        "APPROVED",
+        "PAID",
+        "REJECTED",
+        "BLACKLISTED"
+      ],
+      "default": "PENDING_VERIFICATION",
+      "description": "Verification state before prize is released to the winner"
+    },
+    "reviewedBy": {
+      "type": "string",
+      "description": "Admin who reviewed the payout"
+    },
+    "reviewedAt": {
+      "type": "string"
+    },
+    "rejectionReason": {
+      "type": "string"
+    },
+    "paidTxHash": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "drawNumber",
+    "userId",
+    "tier",
+    "amount",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.userId": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "platform_admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "platform_admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "platform_admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "platform_admin"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "GovTransaction",
+  "type": "object",
+  "properties": {
+    "fromUserId": {
+      "type": "string"
+    },
+    "fromName": {
+      "type": "string"
+    },
+    "toUserId": {
+      "type": "string"
+    },
+    "toName": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "MINT",
+        "TRANSFER",
+        "BURN",
+        "PURCHASE",
+        "SALE"
+      ],
+      "description": "MINT=from lottery, TRANSFER=P2P gift, BURN=voting, PURCHASE/SALE=marketplace"
+    },
+    "projectId": {
+      "type": "string"
+    },
+    "projectName": {
+      "type": "string"
+    },
+    "reference": {
+      "type": "string",
+      "description": "Unique transaction hash/reference"
+    },
+    "createdAt": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "amount",
+    "type"
+  ]
+}

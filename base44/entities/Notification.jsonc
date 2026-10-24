@@ -1,0 +1,41 @@
+{
+  "name": "Notification",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "ticket",
+        "draw",
+        "prize",
+        "gov",
+        "governance",
+        "project",
+        "agent",
+        "config",
+        "treasury"
+      ]
+    },
+    "read": {
+      "type": "boolean",
+      "default": false
+    },
+    "createdAt": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "message",
+    "type"
+  ]
+}

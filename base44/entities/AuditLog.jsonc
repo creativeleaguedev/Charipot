@@ -1,0 +1,44 @@
+{
+  "name": "AuditLog",
+  "type": "object",
+  "properties": {
+    "actor": {
+      "type": "string",
+      "description": "User name performing the action"
+    },
+    "actorRole": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string",
+      "description": "e.g. PCR_PROPOSED, DRAW_LOCKED, PROJECT_APPROVED"
+    },
+    "entityType": {
+      "type": "string"
+    },
+    "entityId": {
+      "type": "string"
+    },
+    "details": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "critical"
+      ],
+      "default": "info"
+    }
+  },
+  "required": [
+    "actor",
+    "action",
+    "details",
+    "timestamp"
+  ]
+}

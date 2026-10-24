@@ -1,0 +1,118 @@
+{
+  "name": "Draw",
+  "type": "object",
+  "properties": {
+    "drawNumber": {
+      "type": "number",
+      "description": "Sequential draw identifier"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "BUILDING",
+        "MINIMUM_REACHED",
+        "TARGET_REACHED",
+        "LOCKED",
+        "RANDOMNESS_REQUESTED",
+        "NUMBERS_GENERATED",
+        "WINNERS_DETERMINED",
+        "PRIZES_SETTLED",
+        "COMPLETED"
+      ],
+      "default": "BUILDING"
+    },
+    "jackpotAmount": {
+      "type": "number",
+      "default": 0,
+      "description": "Accumulated 5/5 jackpot (USD). Carries over when 5/5 is unwon."
+    },
+    "prizePool": {
+      "type": "number",
+      "default": 0,
+      "description": "Current 4/5 + 3/5 pools"
+    },
+    "pool4Carry": {
+      "type": "number",
+      "default": 0,
+      "description": "Carried-over un-won 4/5 pot from prior draws. Grows until 4/5 is won."
+    },
+    "pool3Carry": {
+      "type": "number",
+      "default": 0,
+      "description": "Carried-over un-won 3/5 pot from prior draws. Grows until 3/5 is won."
+    },
+    "charityContribution": {
+      "type": "number",
+      "default": 0,
+      "description": "Charity raised this draw"
+    },
+    "reserveBalance": {
+      "type": "number",
+      "default": 0,
+      "description": "Carried buffer/reserve available for the admin to allocate to the jackpot"
+    },
+    "reserveAllocation": {
+      "type": "number",
+      "default": 0,
+      "description": "Reserve accrued from this draw's prize contribution"
+    },
+    "ticketCount": {
+      "type": "number",
+      "default": 0
+    },
+    "targetTickets": {
+      "type": "number",
+      "default": 50000
+    },
+    "minThreshold": {
+      "type": "number",
+      "default": 3500,
+      "description": "Minimum jackpot activation (USD)"
+    },
+    "winningNumbers": {
+      "type": "string",
+      "description": "Normalized e.g. 04-08-17-22-39"
+    },
+    "randomnessProof": {
+      "type": "string",
+      "description": "VRF/drand reference"
+    },
+    "rolloverFrom": {
+      "type": "number",
+      "description": "Previous draw number if rolled over"
+    },
+    "winners5": {
+      "type": "number",
+      "default": 0
+    },
+    "winners4": {
+      "type": "number",
+      "default": 0
+    },
+    "winners3": {
+      "type": "number",
+      "default": 0
+    },
+    "totalPrizesPaid": {
+      "type": "number",
+      "default": 0
+    },
+    "agentBonusPaid": {
+      "type": "number",
+      "default": 0
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "lockedAt": {
+      "type": "string"
+    },
+    "completedAt": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "drawNumber",
+    "status"
+  ]
+}

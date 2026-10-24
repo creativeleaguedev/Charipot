@@ -1,0 +1,54 @@
+{
+  "name": "GovernanceRound",
+  "type": "object",
+  "properties": {
+    "roundNumber": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "UPCOMING",
+        "ACTIVE",
+        "TALLYING",
+        "COMPLETED"
+      ],
+      "default": "UPCOMING"
+    },
+    "startDate": {
+      "type": "string"
+    },
+    "endDate": {
+      "type": "string"
+    },
+    "charityFundAvailable": {
+      "type": "number"
+    },
+    "projectsEligible": {
+      "type": "number",
+      "default": 0
+    },
+    "totalCommittedGov": {
+      "type": "number",
+      "default": 0
+    },
+    "voterCount": {
+      "type": "number",
+      "default": 0
+    },
+    "maxPerProject": {
+      "type": "number",
+      "default": 100000
+    },
+    "minQuorum": {
+      "type": "number",
+      "default": 5000,
+      "description": "Minimum total GOV for round validity"
+    }
+  },
+  "required": [
+    "roundNumber",
+    "status",
+    "charityFundAvailable"
+  ]
+}

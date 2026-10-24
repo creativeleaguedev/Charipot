@@ -1,0 +1,77 @@
+{
+  "name": "PCR",
+  "type": "object",
+  "properties": {
+    "parameterKey": {
+      "type": "string"
+    },
+    "parameterLabel": {
+      "type": "string"
+    },
+    "oldValue": {
+      "type": "number"
+    },
+    "proposedValue": {
+      "type": "number"
+    },
+    "justification": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DRAFTED",
+        "VALIDATED",
+        "REVIEWED",
+        "SCHEDULED",
+        "EFFECTIVE",
+        "REJECTED"
+      ],
+      "default": "DRAFTED"
+    },
+    "proposerId": {
+      "type": "string"
+    },
+    "proposerName": {
+      "type": "string"
+    },
+    "approverId": {
+      "type": "string"
+    },
+    "approverName": {
+      "type": "string"
+    },
+    "highImpact": {
+      "type": "boolean",
+      "default": false
+    },
+    "timelockHours": {
+      "type": "number",
+      "default": 48
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "validatedAt": {
+      "type": "string"
+    },
+    "reviewedAt": {
+      "type": "string"
+    },
+    "scheduledAt": {
+      "type": "string"
+    },
+    "effectiveAt": {
+      "type": "string",
+      "description": "ISO datetime the change takes effect"
+    }
+  },
+  "required": [
+    "parameterKey",
+    "parameterLabel",
+    "oldValue",
+    "proposedValue",
+    "justification",
+    "status"
+  ]
+}

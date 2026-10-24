@@ -1,0 +1,68 @@
+{
+  "name": "PassPackage",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "Display name of the pass package"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Bundle USD amount the user pays"
+    },
+    "discount": {
+      "type": "number",
+      "default": 0,
+      "description": "Percentage off the normal ticket price (0-100)"
+    },
+    "passPrice": {
+      "type": "number",
+      "default": 0,
+      "description": "Per-pass price override. 0 = derive from ticket_price * (1 - discount/100)"
+    },
+    "validityDays": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of days passes from this package remain valid. 0 = no expiry"
+    },
+    "bestValue": {
+      "type": "boolean",
+      "default": false,
+      "description": "Highlight this package as best value on the marketplace"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the package is shown and purchasable on the marketplace"
+    },
+    "order": {
+      "type": "number",
+      "default": 0,
+      "description": "Display order (lower first)"
+    }
+  },
+  "required": [
+    "label",
+    "amount",
+    "discount",
+    "active"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

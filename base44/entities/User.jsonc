@@ -1,0 +1,34 @@
+{
+  "properties": {
+    "role": {
+      "type": "string",
+      "description": "The role of the user in the app",
+      "enum": [
+        "participant",
+        "agent",
+        "club_officer",
+        "platform_admin",
+        "admin"
+      ],
+      "default": "participant"
+    },
+    "isBlacklisted": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if the user account is blacklisted and blocked from receiving prize payouts"
+    },
+    "blacklistReason": {
+      "type": "string",
+      "description": "Reason the account was blacklisted"
+    },
+    "blacklistedAt": {
+      "type": "string",
+      "description": "ISO datetime the account was blacklisted"
+    }
+  },
+  "required": [
+    "role"
+  ],
+  "name": "User",
+  "type": "object"
+}

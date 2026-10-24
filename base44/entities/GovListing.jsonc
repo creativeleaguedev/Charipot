@@ -1,0 +1,78 @@
+{
+  "name": "GovListing",
+  "type": "object",
+  "properties": {
+    "sellerId": {
+      "type": "string",
+      "description": "Order creator id (seller for sell orders, buyer for buy orders)"
+    },
+    "sellerName": {
+      "type": "string",
+      "description": "Order creator name"
+    },
+    "side": {
+      "type": "string",
+      "enum": [
+        "sell",
+        "buy"
+      ],
+      "default": "sell",
+      "description": "sell = offer GOV for sale; buy = bid for GOV payable in USDC/USDT"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Total GOV offered (sell) or requested (buy)"
+    },
+    "filledAmount": {
+      "type": "number",
+      "default": 0,
+      "description": "GOV already matched/filled on this order"
+    },
+    "pricePerGov": {
+      "type": "number",
+      "description": "USD per GOV"
+    },
+    "total": {
+      "type": "number",
+      "description": "amount * pricePerGov"
+    },
+    "escrowChain": {
+      "type": "string",
+      "description": "For buy orders: chain the bid crypto is reserved on (bnb|ethereum|polygon)"
+    },
+    "escrowToken": {
+      "type": "string",
+      "description": "For buy orders: token reserved (USDC|USDT)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "OPEN",
+        "SOLD",
+        "CANCELLED"
+      ],
+      "default": "OPEN"
+    },
+    "buyerId": {
+      "type": "string",
+      "description": "Counterparty who filled the order (buyer for sell orders, seller for buy orders)"
+    },
+    "buyerName": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "soldAt": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "sellerId",
+    "sellerName",
+    "amount",
+    "pricePerGov",
+    "total",
+    "status"
+  ]
+}

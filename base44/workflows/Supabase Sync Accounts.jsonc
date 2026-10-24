@@ -1,0 +1,40 @@
+{
+  "description": "Mirror member records to Supabase (rotary_members) on signup/login",
+  "name": "Supabase Sync Accounts",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "app_user_auth",
+      "events": [
+        "signup",
+        "login"
+      ]
+    }
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "supabase_sync_accounts",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "sync": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "supabaseSyncUser",
+            "args": {
+              "user_id": "${ .trigger.user_id }"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Mirror member to Supabase",
+            "description": "rotary_members"
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "Draw Completed Notification",
+  "description": "Emails admins and posts an in-app notification the moment a lottery draw finishes executing, with winners and jackpot status.",
+  "trigger": {
+    "config": {
+      "trigger_type": "entity",
+      "entity_name": "Draw",
+      "events": [
+        "update"
+      ]
+    },
+    "condition": "${ .trigger.data.status == \"COMPLETED\" and .trigger.old_data.status != \"COMPLETED\" }"
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "draw_completed_notification",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "notify": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "notifyDrawCompleted",
+            "args": {
+              "draw_id": "${ .trigger.entity_id }"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Notify draw completed",
+            "description": "Email + in-app notification to admins"
+          }
+        }
+      }
+    ]
+  }
+}

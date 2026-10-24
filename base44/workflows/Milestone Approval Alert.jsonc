@@ -1,0 +1,40 @@
+{
+  "name": "Milestone Approval Alert",
+  "description": "Emails the project officer via Gmail when an admin verifies or releases funds for a funding milestone",
+  "trigger": {
+    "config": {
+      "trigger_type": "entity",
+      "entity_name": "Milestone",
+      "events": [
+        "update"
+      ]
+    },
+    "condition": "${ (.trigger.data.status == \"VERIFIED\" or .trigger.data.status == \"DISBURSED\") and .trigger.old_data.status != .trigger.data.status }"
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "milestone_approval_alert",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "notify_officer": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "notifyMilestoneApproved",
+            "args": {
+              "milestone_id": "${ .trigger.entity_id }"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Email project officer",
+            "description": "Send Gmail approval alert"
+          }
+        }
+      }
+    ]
+  }
+}

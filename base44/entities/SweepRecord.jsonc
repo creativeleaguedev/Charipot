@@ -1,0 +1,95 @@
+{
+  "name": "SweepRecord",
+  "type": "object",
+  "properties": {
+    "cycleNumber": {
+      "type": "number",
+      "description": "Sequential sweep cycle number"
+    },
+    "sweptAt": {
+      "type": "string",
+      "description": "ISO datetime the sweep was executed"
+    },
+    "chain": {
+      "type": "string",
+      "enum": [
+        "bnb",
+        "ethereum",
+        "polygon"
+      ],
+      "default": "bnb",
+      "description": "Chain the sweep was executed on"
+    },
+    "collectorBalance": {
+      "type": "number",
+      "default": 0,
+      "description": "Total USDC + USDT in the collector at sweep time (USD)"
+    },
+    "usdc": {
+      "type": "number",
+      "default": 0,
+      "description": "USDC portion swept"
+    },
+    "usdt": {
+      "type": "number",
+      "default": 0,
+      "description": "USDT portion swept"
+    },
+    "totalDistributed": {
+      "type": "number",
+      "default": 0,
+      "description": "Total USD distributed to custody wallets this cycle"
+    },
+    "transfers": {
+      "type": "string",
+      "description": "JSON array of {key, token, amount, txHash, address}"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "COMPLETED",
+        "PARTIAL",
+        "FAILED"
+      ],
+      "default": "COMPLETED",
+      "description": "Outcome of the sweep"
+    },
+    "triggeredBy": {
+      "type": "string",
+      "description": "auto | manual"
+    },
+    "note": {
+      "type": "string",
+      "description": "Optional error/notes for partial/failed sweeps"
+    }
+  },
+  "required": [
+    "cycleNumber",
+    "sweptAt",
+    "collectorBalance",
+    "totalDistributed",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Mirror Wallet records to Supabase (rotary_wallets) on create/update",
+  "name": "Supabase Sync Wallets",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "entity",
+      "events": [
+        "create",
+        "update"
+      ],
+      "entity_name": "Wallet"
+    }
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "supabase_sync_wallets",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "sync": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "supabaseSync",
+            "args": {
+              "entity": "Wallet",
+              "recordId": "${ .trigger.entity_id }"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Mirror wallet to Supabase",
+            "description": "rotary_wallets"
+          }
+        }
+      }
+    ]
+  }
+}

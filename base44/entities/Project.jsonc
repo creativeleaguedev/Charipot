@@ -1,0 +1,341 @@
+{
+  "name": "Project",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "clubName": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string",
+      "description": "Free-text location (country / county / city / community)"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Water & Sanitation",
+        "Education",
+        "Healthcare",
+        "Maternal & Child Health",
+        "Food Security",
+        "Environment",
+        "Economic Empowerment",
+        "Youth",
+        "Community Infrastructure",
+        "Disaster Relief",
+        "Other"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description (250\u2013500 chars)"
+    },
+    "problemStatement": {
+      "type": "string"
+    },
+    "beneficiaries": {
+      "type": "number",
+      "default": 0,
+      "description": "Total estimated beneficiaries"
+    },
+    "requestedFunding": {
+      "type": "number",
+      "description": "Amount requested from the platform Charity Fund (USD)"
+    },
+    "budget": {
+      "type": "number",
+      "description": "Total project cost (USD)"
+    },
+    "timeline": {
+      "type": "string",
+      "description": "Human-readable project timeline summary"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "SUBMITTED",
+        "UNDER_REVIEW",
+        "INFORMATION_REQUIRED",
+        "REJECTED",
+        "APPROVED",
+        "PUBLISHED",
+        "VOTING",
+        "SELECTED",
+        "FUNDING_APPROVED",
+        "FUNDING_IN_PROGRESS",
+        "COMPLETED",
+        "SUSPENDED",
+        "CANCELLED"
+      ],
+      "default": "SUBMITTED"
+    },
+    "submittedBy": {
+      "type": "string"
+    },
+    "submittedById": {
+      "type": "string"
+    },
+    "submittedAt": {
+      "type": "string"
+    },
+    "approvedAt": {
+      "type": "string"
+    },
+    "fundingAllocated": {
+      "type": "number",
+      "default": 0
+    },
+    "fundingDisbursed": {
+      "type": "number",
+      "default": 0
+    },
+    "totalCommittedGov": {
+      "type": "number",
+      "default": 0
+    },
+    "voterCount": {
+      "type": "number",
+      "default": 0
+    },
+    "impactSummary": {
+      "type": "string"
+    },
+    "milestonesCompleted": {
+      "type": "number",
+      "default": 0
+    },
+    "milestonesTotal": {
+      "type": "number",
+      "default": 0
+    },
+    "conflictOfInterest": {
+      "type": "string",
+      "default": "None declared"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "shortDescription": {
+      "type": "string",
+      "description": "250\u2013500 char summary shown on the project card"
+    },
+    "location": {
+      "type": "string",
+      "description": "Full location: country / county / city / community"
+    },
+    "startDate": {
+      "type": "string",
+      "description": "ISO date the project is expected to start"
+    },
+    "expectedCompletionDate": {
+      "type": "string",
+      "description": "ISO date the project is expected to complete"
+    },
+    "projectReference": {
+      "type": "string",
+      "description": "Auto-generated reference, e.g. RIV-PROJ-XXXXXX"
+    },
+    "communityNeed": {
+      "type": "string"
+    },
+    "evidenceOfNeed": {
+      "type": "string",
+      "description": "JSON array of uploaded evidence files"
+    },
+    "whyThisProject": {
+      "type": "string"
+    },
+    "existingAlternatives": {
+      "type": "string"
+    },
+    "primaryBeneficiaries": {
+      "type": "string"
+    },
+    "estimatedNumber": {
+      "type": "string"
+    },
+    "secondaryBeneficiaries": {
+      "type": "string"
+    },
+    "beneficiaryArea": {
+      "type": "string"
+    },
+    "vulnerableGroups": {
+      "type": "string"
+    },
+    "selectionMethod": {
+      "type": "string"
+    },
+    "beneficiaryBreakdown": {
+      "type": "string",
+      "description": "JSON: total/male/female/children/youth/adults/disabilities/other"
+    },
+    "objectives": {
+      "type": "string",
+      "description": "JSON array of {objective, target, measurement}"
+    },
+    "activities": {
+      "type": "string",
+      "description": "JSON array of {activity, description, quantity, timeline, responsible, expectedOutput}"
+    },
+    "implementationTimeline": {
+      "type": "string",
+      "description": "JSON array of {milestone, start, end, result}"
+    },
+    "implementationTeam": {
+      "type": "string",
+      "description": "JSON array of {name, position, organization, responsibility, contact, experience}"
+    },
+    "detailedBudget": {
+      "type": "string",
+      "description": "JSON array of {item, description, quantity, unitCost, total}"
+    },
+    "fundingSources": {
+      "type": "string",
+      "description": "JSON: rotaryContribution, communityContribution, otherDonors, govtContribution, otherFunding, alreadySecured, fundingGap"
+    },
+    "totalProjectCost": {
+      "type": "number",
+      "default": 0
+    },
+    "fundingModel": {
+      "type": "string",
+      "enum": [
+        "full",
+        "partial",
+        "milestone",
+        "co-funded"
+      ],
+      "default": "full"
+    },
+    "minimumViableFunding": {
+      "type": "number",
+      "default": 0
+    },
+    "phases": {
+      "type": "string",
+      "description": "JSON array of {phase, amount}"
+    },
+    "orgDetails": {
+      "type": "string",
+      "description": "JSON: district, orgCountry, registrationId, clubContact, authorizedOfficer, president, officialEmail, officialPhone"
+    },
+    "verificationDocs": {
+      "type": "string",
+      "description": "JSON array of uploaded Rotary/org verification documents"
+    },
+    "coiDeclared": {
+      "type": "string",
+      "enum": [
+        "no",
+        "yes"
+      ],
+      "default": "no"
+    },
+    "coiDetails": {
+      "type": "string",
+      "description": "JSON array of {person, relationship, interest, explanation}"
+    },
+    "procurementMethod": {
+      "type": "string"
+    },
+    "procurementQuotes": {
+      "type": "string"
+    },
+    "procurementSuppliers": {
+      "type": "string"
+    },
+    "procurementCompetitive": {
+      "type": "string"
+    },
+    "procurementDocs": {
+      "type": "string",
+      "description": "JSON array of uploaded procurement documents"
+    },
+    "sustainabilityPlan": {
+      "type": "string"
+    },
+    "sustainabilityOperator": {
+      "type": "string"
+    },
+    "sustainabilityMaintainer": {
+      "type": "string"
+    },
+    "ongoingCosts": {
+      "type": "string"
+    },
+    "whoPays": {
+      "type": "string"
+    },
+    "revenueModel": {
+      "type": "string"
+    },
+    "ifNoFunding": {
+      "type": "string"
+    },
+    "impactOutputs": {
+      "type": "string"
+    },
+    "impactOutcomes": {
+      "type": "string"
+    },
+    "impactLongTerm": {
+      "type": "string"
+    },
+    "impactKpis": {
+      "type": "string",
+      "description": "JSON array of {kpi, baseline, target, measurement}"
+    },
+    "publicDocs": {
+      "type": "string",
+      "description": "JSON array of public-facing documents"
+    },
+    "privateDocs": {
+      "type": "string",
+      "description": "JSON array of confidential documents (admin-only)"
+    },
+    "mediaGallery": {
+      "type": "string",
+      "description": "JSON array of project photos / videos"
+    },
+    "paymentWalletAddress": {
+      "type": "string",
+      "description": "On-chain wallet address to receive disbursement"
+    },
+    "paymentNetwork": {
+      "type": "string",
+      "enum": [
+        "bnb",
+        "ethereum",
+        "polygon"
+      ],
+      "default": "bnb"
+    },
+    "paymentToken": {
+      "type": "string",
+      "enum": [
+        "USDC",
+        "USDT"
+      ],
+      "default": "USDC"
+    },
+    "paymentBankDetails": {
+      "type": "string",
+      "description": "Optional bank account / payment details"
+    },
+    "declarationAgreed": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "name",
+    "clubName",
+    "category",
+    "requestedFunding",
+    "status"
+  ]
+}

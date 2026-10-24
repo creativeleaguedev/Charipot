@@ -1,0 +1,87 @@
+{
+  "name": "SupportMessage",
+  "type": "object",
+  "properties": {
+    "ticketId": {
+      "type": "string",
+      "description": "Ticket this message belongs to"
+    },
+    "ticketCode": {
+      "type": "string"
+    },
+    "ticketNumber": {
+      "type": "number"
+    },
+    "ticketOwnerId": {
+      "type": "string",
+      "description": "User id of the ticket owner \u2014 lets the owner read admin replies"
+    },
+    "authorId": {
+      "type": "string"
+    },
+    "authorName": {
+      "type": "string"
+    },
+    "authorRole": {
+      "type": "string",
+      "enum": [
+        "user",
+        "admin"
+      ],
+      "default": "user"
+    },
+    "body": {
+      "type": "string",
+      "description": "Message text"
+    },
+    "attachments": {
+      "type": "string",
+      "description": "JSON array of {name, url, kind} where kind is image|file"
+    },
+    "createdAt": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "ticketId",
+    "ticketOwnerId",
+    "authorRole",
+    "body"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.ticketOwnerId": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.ticketOwnerId": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

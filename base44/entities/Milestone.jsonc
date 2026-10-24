@@ -1,0 +1,52 @@
+{
+  "name": "Milestone",
+  "type": "object",
+  "properties": {
+    "projectId": {
+      "type": "string"
+    },
+    "projectName": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "deadline": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "IN_PROGRESS",
+        "VERIFIED",
+        "DISBURSED",
+        "BLOCKED"
+      ],
+      "default": "PENDING"
+    },
+    "evidenceUrl": {
+      "type": "string"
+    },
+    "completedAt": {
+      "type": "string"
+    },
+    "order": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "projectId",
+    "projectName",
+    "title",
+    "amount",
+    "status"
+  ]
+}

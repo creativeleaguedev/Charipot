@@ -1,0 +1,71 @@
+{
+  "name": "ConfigParameter",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Unique parameter identifier"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "revenue_split",
+        "prize_split",
+        "lottery",
+        "agent",
+        "governance",
+        "project"
+      ],
+      "description": "Parameter grouping"
+    },
+    "label": {
+      "type": "string",
+      "description": "Human-readable name"
+    },
+    "value": {
+      "type": "number",
+      "description": "Currently effective value"
+    },
+    "defaultValue": {
+      "type": "number"
+    },
+    "min": {
+      "type": "number"
+    },
+    "max": {
+      "type": "number"
+    },
+    "unit": {
+      "type": "string",
+      "description": "%, USD, tickets, hours, GOV"
+    },
+    "description": {
+      "type": "string"
+    },
+    "highImpact": {
+      "type": "boolean",
+      "default": false,
+      "description": "True => longer timelock + multisig"
+    },
+    "timelockHours": {
+      "type": "number",
+      "default": 48
+    },
+    "lastUpdatedBy": {
+      "type": "string"
+    },
+    "lastUpdatedAt": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "key",
+    "category",
+    "label",
+    "value",
+    "defaultValue",
+    "min",
+    "max",
+    "unit"
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "name": "PlatformWallet",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Unique wallet key: treasury | agent_fee | jackpot_5 | winnings_4 | winnings_3 | charity | buffer"
+    },
+    "label": {
+      "type": "string",
+      "description": "Human-readable wallet name"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "revenue_split",
+        "prize_split",
+        "reserve",
+        "agent"
+      ],
+      "description": "Config category this wallet's allocation derives from"
+    },
+    "address": {
+      "type": "string",
+      "description": "On-chain EVM custody address (shared custody across wallets)"
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this wallet is shown on the public wallets page"
+    },
+    "description": {
+      "type": "string"
+    },
+    "ledgerBalance": {
+      "type": "number",
+      "default": 0,
+      "description": "Cumulative allocations credited to this wallet across all settled draws"
+    },
+    "autoRolloverAmount": {
+      "type": "number",
+      "default": 0,
+      "description": "Per-draw USD amount auto-rolled from this buffer wallet into the 5/5 jackpot; 0 = no auto-roll. Admin-set, persists until changed."
+    },
+    "order": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "key",
+    "label",
+    "address",
+    "isPublic"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "platform_admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "platform_admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "platform_admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "platform_admin"
+          }
+        }
+      ]
+    }
+  }
+}

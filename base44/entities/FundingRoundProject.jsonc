@@ -1,0 +1,103 @@
+{
+  "name": "FundingRoundProject",
+  "type": "object",
+  "properties": {
+    "fundingRoundId": {
+      "type": "string",
+      "description": "Round this entry belongs to"
+    },
+    "projectId": {
+      "type": "string"
+    },
+    "projectName": {
+      "type": "string"
+    },
+    "clubName": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "requestedFunding": {
+      "type": "number",
+      "description": "Approved funding request \u2014 the allocation cap (MIN(requestedFunding, remaining))"
+    },
+    "projectBudget": {
+      "type": "number",
+      "description": "Total project cost (informational only, not used for allocation)"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "liveVotes": {
+      "type": "number",
+      "default": 0,
+      "description": "Running GOV committed to this project within this round"
+    },
+    "voterCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Distinct voters in this round for this project"
+    },
+    "finalVoteCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Frozen GOV total at close"
+    },
+    "finalRank": {
+      "type": "number",
+      "default": 0,
+      "description": "Final ranking position at close (1 = highest)"
+    },
+    "allocationAmount": {
+      "type": "number",
+      "default": 0,
+      "description": "Funding allocated from the round"
+    },
+    "fundingStatus": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "FULLY_FUNDED",
+        "PARTIALLY_FUNDED",
+        "NOT_FUNDED"
+      ],
+      "default": "PENDING",
+      "description": "Outcome of the allocation calculation"
+    },
+    "createdAt": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "fundingRoundId",
+    "projectId",
+    "projectName",
+    "requestedFunding",
+    "fundingStatus"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

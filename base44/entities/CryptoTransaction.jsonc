@@ -1,0 +1,84 @@
+{
+  "name": "CryptoTransaction",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string"
+    },
+    "fullName": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "DEPOSIT",
+        "WITHDRAW",
+        "LOTTERY_BUY",
+        "PASS_PURCHASE",
+        "DONATION",
+        "PRIZE_PAYOUT",
+        "GOV_MINT",
+        "GOV_PURCHASE",
+        "GOV_SALE",
+        "REFERRAL",
+        "FEE",
+        "GAS"
+      ],
+      "description": "Purpose of the on-chain movement"
+    },
+    "chain": {
+      "type": "string",
+      "enum": [
+        "bnb",
+        "ethereum",
+        "polygon"
+      ]
+    },
+    "token": {
+      "type": "string",
+      "enum": [
+        "USDC",
+        "USDT"
+      ]
+    },
+    "amount": {
+      "type": "number"
+    },
+    "txHash": {
+      "type": "string",
+      "description": "On-chain transaction hash"
+    },
+    "fromAddress": {
+      "type": "string"
+    },
+    "toAddress": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "CONFIRMED",
+        "FAILED"
+      ],
+      "default": "PENDING"
+    },
+    "blockNumber": {
+      "type": "number"
+    },
+    "reference": {
+      "type": "string",
+      "description": "Optional linked entity id (e.g. ticket id)"
+    },
+    "createdAt": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "chain",
+    "token",
+    "amount",
+    "status"
+  ]
+}

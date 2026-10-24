@@ -1,0 +1,130 @@
+{
+  "name": "SupportTicket",
+  "type": "object",
+  "properties": {
+    "ticketNumber": {
+      "type": "number",
+      "description": "Sequential ticket number"
+    },
+    "ticketCode": {
+      "type": "string",
+      "description": "Human-readable ticket reference, e.g. SUP-0001"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Owner of the ticket"
+    },
+    "userName": {
+      "type": "string"
+    },
+    "userEmail": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "default": "General"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "normal",
+        "high"
+      ],
+      "default": "normal",
+      "description": "Urgency level used for badge styling and inbox triage"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "OPEN",
+        "AWAITING_USER",
+        "AWAITING_ADMIN",
+        "RESOLVED",
+        "CLOSED"
+      ],
+      "default": "OPEN"
+    },
+    "unreadForUser": {
+      "type": "boolean",
+      "default": false,
+      "description": "True when admin replied and user has not yet seen it"
+    },
+    "unreadForAdmin": {
+      "type": "boolean",
+      "default": true,
+      "description": "True when a new ticket or user reply needs admin attention"
+    },
+    "adminTyping": {
+      "type": "boolean",
+      "default": false,
+      "description": "Live flag: an admin is composing a reply in this ticket"
+    },
+    "userTyping": {
+      "type": "boolean",
+      "default": false,
+      "description": "Live flag: the user is composing a reply in this ticket"
+    },
+    "lastReadAtUser": {
+      "type": "string",
+      "description": "ISO datetime the user last opened the conversation (used for read receipts + new-message divider)"
+    },
+    "lastReadAtAdmin": {
+      "type": "string",
+      "description": "ISO datetime an admin last opened the conversation"
+    },
+    "lastMessageAt": {
+      "type": "string"
+    },
+    "lastMessagePreview": {
+      "type": "string",
+      "description": "Short preview of the most recent message"
+    },
+    "createdAt": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "ticketCode",
+    "userId",
+    "subject",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.userId": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "data.userId": "{{user.id}}"
+    },
+    "update": {
+      "$or": [
+        {
+          "data.userId": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
